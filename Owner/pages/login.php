@@ -1,3 +1,19 @@
+<?php session_start(); include("../../Connections.php");
+	/*Login*/
+	if(isset($_POST['signIn'])){
+		$user = $_POST['username'];
+		$pass = md5($_POST['password']);
+		$query = mysqli_query($conn, "SELECT * FROM owner WHERE username = '$user' AND password = '$pass'");
+		$check = mysqli_num_rows($query);
+		if($check == 1){
+			$_SESSION['owner'] = $user;
+			header('location:index.php');
+		} else{
+			?><script type="text/javascript">alert("Invalid Username Or Password !!!")</script><?php
+		}
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,3 +138,23 @@
 
 </body>
 </html>
+
+<?php
+	if(isset($_POST['forgot'])){
+		$user = $_POST['username'];
+		$pass = md5($_POST['password']);
+		$confPass = md5($_POST['confirmPass']);
+		$sql = mysqli_query($conn, "SELECT * FROM owner WHERE username = '$user'");
+		$cek = mysqli_num_rows($sql);
+		if($cek >= 1){
+			if($confPass == $pass){
+				$query = mysqli_query($conn, "UPDATE user SET password = '$pass' WHERE username = '$user'");
+				?><script type="text/javascript">alert("Change Password Successfully")</script><?php
+			} else{
+				?><script type="text/javascript">alert("Password Doesn't Match !!!")</script><?php
+			}
+		} else{
+			?><script type="text/javascript">alert("Username Can't Be Found !! Change Password Failed !!")</script><?php
+		}
+	}
+?>

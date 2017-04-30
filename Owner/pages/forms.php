@@ -368,7 +368,7 @@
         </div>
         <!-- /#page-wrapper -->
 
-    </div>
+    </div
     <!-- /#wrapper -->
 
     <!-- jQuery -->

@@ -1,4 +1,4 @@
-<?php include ("../../Connections.php") ?>
+<?php session_start(); include ("session.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SI_Kontrakan Online</a>
+                <a class="navbar-brand" href="index.php">SI_Kontrakan Online</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -120,15 +120,8 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
+							<h4><span class="glyphicon glyphicon-user">
+							<?php echo $_SESSION['owner'] ?></span></h4>
                         </li>
                         <li>
                             <a href="index.php"><i class="fa fa-plus-circle fa-fw"></i> Input Data Kontrakan</a>
@@ -300,6 +293,12 @@
 							<input type="text" class="form-control" name="fasilitas" id="fasilitas" placeholder="Fasilitas">
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="fasilitas"><b>Gambar </b></label>
+						<div class="col-sm-10">
+							<input type="file" name="imageUpload" id="imageUpload" placeholder="Fasilitas">
+						</div>
+					</div>
 					<div class="form-group">        
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="submit" class="btn btn-success" name="tambah">Tambah</button>
@@ -370,7 +369,8 @@
 		$kmr_mandi = $_POST['kmr_mandi'];
 		$air = $_POST['air'];
 		$fasilitas = $_POST['fasilitas'];
-		$sql = mysqli_query($conn, "INSERT INTO rumah_kontrakan VALUES('','$alamat','$harga','$kmr_tidur','$kmr_mandi','$fasilitas','','$nama_perum','Danu')");
+		$gambar = $_POST['imageUpload'];
+		$sql = mysqli_query($conn, "INSERT INTO rumah_kontrakan VALUES('','$alamat','$harga','$kmr_tidur','$kmr_mandi','$fasilitas','$gambar','$nama_perum','')");
 		if($sql){
 			?><script type="text/javascript">alert("Successfully !!!, Data Have Been Saved")</script><?php
 		} else{

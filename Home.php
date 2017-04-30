@@ -81,14 +81,14 @@
 		</div>
 	</nav>
 	<?php
-		$sql = mysqli_query($conn, "SELECT * FROM rumah_kontrakan");
+		$sql = mysqli_query($conn, "SELECT * FROM rumah_kontrakan, perumahan where rumah_kontrakan.id_perum = perumahan.id_perum");
 		$cek = mysqli_num_rows($sql);
 		if($sql){ ?>
 			<div class="container">
 				<div class="row"> <?php
 			if($cek){
 				while($view = mysqli_fetch_array($sql)){
-					$namaPerum = $view['id_perum'];
+					$namaPerum = $view['nama_perum'];
 					$harga = $view['alamat'];
 					$harga = $view['harga'];
 					$kmr_tidur = $view['kmr_tidur'];

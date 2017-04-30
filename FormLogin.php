@@ -3,7 +3,7 @@
 	if(isset($_POST['signIn'])){
 		$user = $_POST['username'];
 		$pass = md5($_POST['password']);
-		$query = mysqli_query($conn, "SELECT * FROM owner WHERE username = '$user' AND password = '$pass'");
+		$query = mysqli_query($conn, "SELECT * FROM user WHERE username = '$user' AND password = '$pass'");
 		$check = mysqli_num_rows($query);
 		if($check == 1){
 			$_SESSION['login'] = $user;
@@ -185,11 +185,11 @@
 		$user = $_POST['username'];
 		$pass = md5($_POST['password']);
 		$confPass = md5($_POST['confirmPass']);
-		$sql = mysqli_query($conn, "SELECT * FROM owner WHERE username = '$user'");
+		$sql = mysqli_query($conn, "SELECT * FROM user WHERE username = '$user'");
 		$cek = mysqli_num_rows($sql);
 		if($cek == 0){
 			if($confPass == $pass){
-				$query = mysqli_query($conn, "INSERT INTO user VALUES('$user','$name',$email,'$pass')");
+				$query = mysqli_query($conn, "INSERT INTO user VALUES('$user','$pass','$name',$alamat,$noHp, $email,)");
 				?><script type="text/javascript">alert("Registration Successfully !!!, Data Have Been Saved")</script><?php
 			} else{
 				?><script type="text/javascript">alert("Password Doesn't Match !!!")</script><?php
@@ -203,7 +203,7 @@
 		$user = $_POST['username'];
 		$pass = md5($_POST['password']);
 		$confPass = md5($_POST['confirmPass']);
-		$sql = mysqli_query($conn, "SELECT * FROM owner WHERE username = '$user'");
+		$sql = mysqli_query($conn, "SELECT * FROM user WHERE username = '$user'");
 		$cek = mysqli_num_rows($sql);
 		if($cek >= 1){
 				if($confPass == $pass){

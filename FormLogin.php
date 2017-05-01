@@ -189,7 +189,7 @@
 		$cek = mysqli_num_rows($sql);
 		if($cek == 0){
 			if($confPass == $pass){
-				$query = mysqli_query($conn, "INSERT INTO user VALUES('$user','$pass','$name',$alamat,$noHp, $email,)");
+				$query = mysqli_query($conn, "INSERT INTO user VALUES('$user','$pass','$name','$email','$alamat','$noHp')");
 				?><script type="text/javascript">alert("Registration Successfully !!!, Data Have Been Saved")</script><?php
 			} else{
 				?><script type="text/javascript">alert("Password Doesn't Match !!!")</script><?php

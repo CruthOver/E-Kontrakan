@@ -76,7 +76,7 @@
 	</nav>
 	<div class="container text-center">
 		<h1>About Us</h1>      
-		<p>Web ini untuk memudahkan masyrakat untuk mencari kontrakan dengan mudah.<br> Termasuk untuk membantu mahasiswa yang membutuhkan kontrakan
+		<p>Web ini berisi informasi tentang kontrakan yang berfungsi untuk memudahkan masyarakat yang ingin mencari rumah kontrakan.<br> Termasuk untuk membantu mahasiswa yang membutuhkan kontrakan
 		yang dekat dengan universitas nya. <br>Web ini menyediakan list-list rumah yang dikontrakan disetiap daerah, </p>
 	</div><br><br>
 <center>

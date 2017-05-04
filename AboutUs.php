@@ -80,11 +80,12 @@
 		yang dekat dengan universitas nya. <br>Web ini menyediakan list-list rumah yang dikontrakan disetiap daerah, </p>
 	</div><br><br>
 <center>
-	<div class="row">
+<div class="container">
+	<div class="row" style="margin-left:275px">
 		<div class="col-md-4">
 			<div class="thumbnail" style="width:250px">
 				<a href="#">
-					<img src="user-icon.png" class="img-thumbnail img-responsive" alt="Image" style="width:100%">
+					<img src="developer-icon.png" class="img-thumbnail img-responsive" alt="Image" style="width:100%">
 					<div class="caption">
 						<p>3Hats Team Developer</p>
 					</div>
@@ -101,16 +102,7 @@
 				</a>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="thumbnail" style="width:250px">
-				<a href="#">
-					<img src="user-icon.png" class="img-thumbnail img-responsive" alt="Image" style="width:100%">
-					<div class="caption">
-						<p>Lorem ipsum...</p>
-					</div>
-				</a>
-			</div>
-		</div>
+	</div>
 	</div>
 </center>
 	<footer class="container-fluid text-center">

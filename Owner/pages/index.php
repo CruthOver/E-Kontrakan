@@ -1,5 +1,4 @@
 <?php session_start(); include ("session.php"); ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -256,14 +255,14 @@
                     <!-- /.panel -->
                 </div>
                     <!-- /.panel .chat-panel -->
-			</div>
-			<!-- /.row -->
-		</div>
-          <!-- /#page-wrapper -->
-	</div>
-	<!-- /#wrapper -->
-        
-		
+
+            </div>
+                <!-- /.col-lg-4 -->
+        </div>
+            <!-- /.row -->
+    </div>
+	    <!-- /#wrapper -->
+        <!-- /#page-wrapper -->
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
@@ -275,8 +274,8 @@
 
 <?php
 	if(isset($_POST['tambah'])){
-		$user = $_SESSION['owner'];
-		$nama_perum = $data['nama_perum'];
+
+		$nama_perum = $_POST['Data'];
 		$alamat = $_POST['alamat'];
 		$harga = $_POST['harga'];
 		$kmr_tidur = $_POST['kmr_tidur'];
@@ -284,7 +283,9 @@
 		$air = $_POST['air'];
 		$fasilitas = $_POST['fasilitas'];
 		$gambar = $_POST['imageUpload'];
+
 		$sql = mysqli_query($conn, "INSERT INTO rumah_kontrakan VALUES('$nama_perum','$alamat','$harga','$kmr_tidur','$kmr_mandi','$fasilitas','$gambar','$user')");
+
 		if($sql){
 			?><script type="text/javascript">alert("Successfully !!!, Data Have Been Saved")</script><?php
 		} else{

@@ -148,7 +148,7 @@
 		$cek = mysqli_num_rows($sql);
 		if($cek >= 1){
 			if($confPass == $pass){
-				$query = mysqli_query($conn, "UPDATE owner SET password = '$pass' WHERE username = '$user'");
+				$query = mysqli_query($conn, "UPDATE user SET password = '$pass' WHERE username = '$user'");
 				?><script type="text/javascript">alert("Change Password Successfully")</script><?php
 			} else{
 				?><script type="text/javascript">alert("Password Doesn't Match !!!")</script><?php

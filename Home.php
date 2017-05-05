@@ -85,12 +85,11 @@
 		$cek = mysqli_num_rows($sql);
 		if($sql){ ?>
 			<div class="container">
-				<div class="row"><?php
+				<div class="row"> <?php
 			if($cek){
 				while($view = mysqli_fetch_array($sql)){
-					$idRumah = $view['id_rumah'];
 					$namaPerum = $view['nama_perum'];
-					$harga = $view['alamat'];
+					$alamat = $view['alamat_rumah'];
 					$harga = $view['harga'];
 					$kmr_tidur = $view['kmr_tidur'];
 					$kmr_mandi = $view['kmr_mandi'];
@@ -105,7 +104,7 @@
 							<div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
 							<div class="panel-footer">Rp. <?php echo $harga ?>,-/tahun
 								<div class="navbar-right" style="margin-right:1px">
-									<a href="Detail_Rumah.php" value="<?php $idRumah ?>"> view details <span class="glyphicon glyphicon-chevron-right"></span></a>
+									<a href=""> view details <span class="glyphicon glyphicon-chevron-right"></span></a>
 									</div>
 							</div>
 						</div>

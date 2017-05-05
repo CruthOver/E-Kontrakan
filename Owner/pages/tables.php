@@ -1,5 +1,4 @@
 <?php session_start(); include ("session.php"); ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -142,8 +141,14 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <h4><span class="glyphicon glyphicon-user">
-							<?php echo $_SESSION['owner'] ?></span></h4>
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
                             <!-- /input-group -->
                         </li>
                         <li>
@@ -172,7 +177,7 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-			<?php
+            <?php
 					$user = $_SESSION['owner'];
 					$sql = mysqli_query($conn, "SELECT * FROM rumah_kontrakan,perumahan where rumah_kontrakan.id_perum = perumahan.id_perum and rumah_kontrakan.username = '$user'");
 					$cek = mysqli_num_rows($sql);
@@ -223,8 +228,8 @@
 									<td><?php echo $air ?></td>
 									<td><?php echo $fasilitas ?></td>
 									<td>
-										<input type="submit" class="btn btn-success" name="edit" value="Edit"><br>
-										<button style="margin-top:5px" type="submit" class="example2 btn btn-danger" name="hapus">Hapus</button>
+										<a href="form_update.php?id=<?php echo $view['id_rumah']?>"><button type="submit" class="btn btn-success" name="edit">Edit</button></a><br>
+										<a href="delete.php?id=<?php echo $view['id_rumah']?>"><button style="margin-top:5px" type="submit" class="example2 btn btn-danger" name="hapus">Hapus</button></a>
 									</td>
 								</tr> 
 								<?php
@@ -251,12 +256,19 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- DataTables JavaScript -->
     <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- jquery-confirm files -->
+    <script type="text/javascript" src="../js/jquery-confirm.js"></script>
+	
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
 
 	
     <!-- jquery-confirm files -->
@@ -264,12 +276,6 @@
 	
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-	
-
-    <!-- Add the minified version of files from the /dist/ folder. -->
-    <!-- jquery-confirm files -->
-    <link rel="stylesheet" type="text/css" href="../css/jquery-confirm.css"/>
-    <script type="text/javascript" src="../js/jquery-confirm.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
@@ -279,6 +285,7 @@
         });
     });
     </script>
+
 	
 	<script type="text/javascript">
 		$('.example2').on('click', function () {

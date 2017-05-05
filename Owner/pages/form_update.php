@@ -1,5 +1,4 @@
 <?php session_start(); include ("session.php"); 
-
 	$id = $_GET['id'];
 	$query = mysqli_query($conn, "select * from rumah_kontrakan where id_rumah = '$id'");
 	$row = mysqli_fetch_array($query);

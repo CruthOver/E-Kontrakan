@@ -28,47 +28,48 @@
 			<div class="panel-heading"><b>Sign In</b>
 				<a style="margin-left:190px" data-toggle="modal" data-target="#forgot" href="">Forgot Passoword?</a>
 				<div class="modal fade" id="forgot" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Forgot Password</h4>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Forgot Password</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" method="POST">
+									<div class="form-group">
+										<label class="control-label col-sm-2" for="username"><span class="glyphicon glyphicon-user"></span></label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="username" id="username" placeholder="Enter Username" required>
+										</div>
 									</div>
-									<div class="modal-body">
-										<form class="form-horizontal" method="POST">
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="username"><span class="glyphicon glyphicon-user"></span></label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control" name="username" id="username" placeholder="Enter Username" required>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="password"><span class="glyphicon glyphicon-lock"></span></label>
-												<div class="col-sm-10">          
-													<input type="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-															title="Password Harus 8 Karakter atau Lebih dan Terdiri dari Huruf Besar, Huruf Kecil dan Angka" 
-															name="password" id="password" placeholder="Enter password" required>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="conf-password"><span class="glyphicon glyphicon-lock"></span></label>
-												<div class="col-sm-10">          
-													<input type="password" class="form-control" name="confirmPass" id="conf-password" placeholder="Confirm password" required>
-												</div>
-											</div>
-											<div class="form-group">        
-												<div class="col-sm-offset-2 col-sm-10">
-													<button type="submit" class="btn btn-success" name="forgot">Change</button>
-												</div>
-											</div>
-										</form>
+									<div class="form-group">
+										<label class="control-label col-sm-2" for="password"><span class="glyphicon glyphicon-lock"></span></label>
+										<div class="col-sm-10">          
+											<input type="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+												title="Password Harus 8 Karakter atau Lebih dan Terdiri dari Huruf Besar, Huruf Kecil dan Angka" 
+												name="password" id="password" placeholder="Enter password" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-2" for="conf-password"><span class="glyphicon glyphicon-lock"></span></label>
+										<div class="col-sm-10">          
+											<input type="password" class="form-control" name="confirmPass" id="conf-password" placeholder="Confirm password" required>
+										</div>
+									</div>
+									
 									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<div class="form-group">        
+											<div class="col-sm-offset-2 col-sm-10">
+												<button type="submit" class="btn btn-success" name="forgot">Change</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
 									</div>
-									</div>
-								</div>
+								</form>
 							</div>
 						</div>
+					</div>
+				</div>
 			</div>
 			<div class="panel-body">
 				<form class="form-horizontal" method="POST">
@@ -153,15 +154,16 @@
 													<input type="password" class="form-control" name="confirmPass" id="conf-password" placeholder="Confirm password" required>
 												</div>
 											</div>
+											
+										<div class="modal-footer">
 											<div class="form-group">        
 												<div class="col-sm-offset-2 col-sm-10">
 													<button type="submit" class="btn btn-success" name="signUp">Sign Up</button>
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 												</div>
 											</div>
-										</form>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									</div>
+										</div>
+									</form>
 									</div>
 								</div>
 							</div>

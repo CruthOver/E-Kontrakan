@@ -1,4 +1,4 @@
-<?php include("Connections.php")?>
+	<?php include("Connections.php")?>
 <!-- Coba -->
 <!DOCTYPE html>
 <html lang="en">
@@ -81,8 +81,9 @@
 		</div>
 	</nav>
 	<?php
-		$query = mysqli_query($conn, "SELECT * FROM rumah_kontrakan");
-		$jsArray = "var rmhName = new Array();\n";
+		$id = $_GET['id'];
+		$query = mysqli_query($conn, "select * from rumah_kontrakan,perumahan where rumah_kontrakan.id_perum = perumahan.id_perum and id_rumah = '$id'");
+		$row = mysqli_fetch_array($query);
 	?>
 	<div class="container">
 		<div class="row">
@@ -94,33 +95,74 @@
 							<tbody>
 								<tr>
 									<td>Perumahan</td>
-									<td>Doe</td>
+									<td><?php echo $row['nama_perum'];?></td>
 								</tr>
 								<tr>
 									<td>Alamat</td>
-									<td>Moe</td>
+									<td><?php echo $row['alamat_rumah'];?></td>
 								</tr>
 								<tr>
 									<td>Harga</td>
-									<td>Dooley</td>
+									<td><?php echo $row['harga'];?></td>
 								</tr><tr>
 									<td>Kamar Tidur</td>
-									<td>Dooley</td>
+									<td><?php echo $row['kmr_tidur'];?></td>
 								</tr><tr>
 									<td>Kamar Mandi</td>
-									<td>Dooley</td>
+									<td><?php echo $row['kmr_mandi'];?></td>
 								</tr><tr>
 									<td>Air</td>
-									<td>Dooley</td>
+									<td><?php echo $row['air'];?></td>
 								</tr><tr>
 									<td>Fasilitas</td>
-									<td>Dooley</td>
+									<td><?php echo date('d-m-Y');?></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="panel-footer">
-							<center><button type="button" class="btn btn-success" style="width:250px">Booking</button></center>
+						<center><button type="submit" class="btn btn-success" name="pesan" data-toggle="modal" data-target="#booking" style="width:250px">Booking</button></center>
+					</div>
+					
+					<div class="modal fade" id="booking" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Form Booking</h4>
+								</div>
+								<div class="modal-body">
+									<form class="form-horizontal" method="POST">
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="name"><span class="glyphicon glyphicon-user"></span></label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" name="name" id="name" placeholder="Enter Your Name" required>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="email"><span class="glyphicon glyphicon-envelope"></span></label>
+											<div class="col-sm-10">          
+												<input type="email" class="form-control" name="email" id="email" placeholder="Enter Your Email" required>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-2" for="noHp"><span class="glyphicon glyphicon-phone"></span></label>
+											<div class="col-sm-10">          
+												<input type="number" class="form-control" name="noHp" id="noHp" placeholder="Enter Your Phone Number" required>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<div class="form-group">        
+												<div class="col-sm-offset-2 col-sm-10">
+													<button type="submit" class="btn btn-success" name="booking">Booking</button>
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -133,3 +175,25 @@
 	</footer>
 </body>
 </html>
+
+<?php
+	session_start();
+	if(isset($_POST['booking'])){
+		if(isset($_SESSION['login']) ==  true){
+			$user = $_SESSION['login'];
+			$id = $row['id_rumah'];
+			$name = $_POST['name'];
+			$email = $_POST['email'];
+			$noHp = $_POST['noHp'];
+			$date = date("Y-m-d");
+			$query = mysqli_query($conn, "INSERT INTO booking VALUES('','$date','$id','$user')");
+			if($query){
+				?><script type="text/javascript">alert("Data Has Been Saved")</script><?php
+			} else{
+				?><script type="text/javascript">alert("Data Failed to Saved")</script><?php
+			}
+		} else{
+			?><script type="text/javascript">alert("Anda Harus Login Dahulu!!")</script><?php
+		}
+	}
+?>

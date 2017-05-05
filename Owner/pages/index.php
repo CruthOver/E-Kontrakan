@@ -142,106 +142,15 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        <div id="page-wrapper">
+		<div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">Tambah Data</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            <div class="row">
+            
+			<div class="row">
 				<form class="form-horizontal" method="POST">
                 <div class="col-lg-8">
 					<div class="form-group">
@@ -344,76 +253,15 @@
                     </div>
                     <!-- /.panel -->
                 </div>
-                    <!-- /.panel .chat-panel -->
-					
-				<?php
-					$user = $_SESSION['owner'];
-					$sql = mysqli_query($conn, "SELECT * FROM rumah_kontrakan,perumahan where rumah_kontrakan.id_perum = perumahan.id_perum and rumah_kontrakan.username = '$user'");
-					$cek = mysqli_num_rows($sql);
-					$i = 0;
-					if($sql){ ?>
-						<div class="row">
-							<div class="col-lg-12">
-								<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-									<thead>						
-										<tr>
-											<th>No</th>
-											<th>Nama_perum</th>
-											<th>Alamat</th>
-											<th>Harga</th>
-											<th>Kamar Tidur</th>
-											<th>Kamar Mandi</th>
-											<th>Air</th>
-											<th>Fasilitas</th>
-											<th>Aksi</th>
-										</tr>
-									</thead> 
-									<tbody> <?php
-						if($cek){
-							while($view = mysqli_fetch_array($sql)){
-								$i++;
-								$nama_perum = $view['nama_perum'];
-								$alamat = $view['alamat'];
-								$harga = $view['harga'];
-								$kmr_tidur = $view['kmr_tidur'];
-								$kmr_mandi = $view['kmr_mandi'];
-								$air = $view['air'];
-								$fasilitas = $view['fasilitas'];
-								?>
-										<tr class="center">
-											<td><?php echo $i ?></td>                                
-											<td><?php echo $nama_perum ?></td>
-											<td><?php echo $alamat ?></td>
-											<td><?php echo $harga ?></td>
-											<td><?php echo $kmr_tidur ?></td>
-											<td><?php echo $kmr_mandi ?></td>
-											<td><?php echo $air ?></td>
-											<td><?php echo $fasilitas ?></td>
-											<td>
-												<input type="submit" class="btn btn-success" name="edit" value="Edit"><br>
-												<input style="margin-top:5px" type="submit" class="btn btn-danger" name="hapus" value="Hapus">
-											</td>
-										</tr>
-								<?php
-							} ?>
-									</tbody>
-								</table> 
-							</div>
-						</div><?php
-						}
-					}
-				?>
-                    <!-- /.table-responsive -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            </div>
-                <!-- /.col-lg-4 -->
-        </div>
-            <!-- /.row -->
-    </div>
-	    <!-- /#wrapper -->
+				<!-- /.col-lg-4 -->
+			</div>
+				<!-- /.row -->
+		</div>
         <!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	
+	
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->

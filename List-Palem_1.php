@@ -90,7 +90,7 @@
 				while($view = mysqli_fetch_array($sql)){
 					$idRumah = $view['id_rumah'];
 					$namaPerum = $view['nama_perum'];
-					$harga = $view['alamat'];
+					$alamat = $view['alamat_rumah'];
 					$harga = $view['harga'];
 					$kmr_tidur = $view['kmr_tidur'];
 					$kmr_mandi = $view['kmr_mandi'];

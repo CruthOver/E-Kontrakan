@@ -264,6 +264,12 @@
     <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
+    <!-- jquery-confirm files -->
+    <script type="text/javascript" src="../js/jquery-confirm.js"></script>
+	
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
 	
     <!-- jquery-confirm files -->
     <script type="text/javascript" src="../js/jquery-confirm.js"></script>
@@ -279,6 +285,34 @@
         });
     });
     </script>
+
+	
+	<script type="text/javascript">
+		$('.example2').on('click', function () {
+			$.confirm({
+				title: 'Delete',
+				content: 'Are You Sure Want Delete ?',
+				animation: 'scaleX',
+				closeAnimation: 'scaleX',
+				theme: 'bootstrap',
+				buttons: {
+					confirm: {
+						text: 'Delete',
+						btnClass: 'btn-danger',
+						keys: ['enter', 'shift'],
+						action: function () {
+							$.alert('Data Has Been Deleted!');
+						}
+					},
+					Cancel: {
+						text: 'Cancel',
+						btnClass: 'btn-default',
+						keys: ['enter', 'shift']
+					}
+				}
+			});
+		});
+	</script>
 
 	
 	<script type="text/javascript">

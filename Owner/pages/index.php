@@ -255,14 +255,13 @@
                     <!-- /.panel -->
                 </div>
                     <!-- /.panel .chat-panel -->
-
             </div>
-                <!-- /.col-lg-4 -->
+			<!-- /.row -->
         </div>
-            <!-- /.row -->
+        <!-- /#page-wrapper -->    
     </div>
 	    <!-- /#wrapper -->
-        <!-- /#page-wrapper -->
+        
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->

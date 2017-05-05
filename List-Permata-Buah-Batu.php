@@ -98,7 +98,7 @@
 							<div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
 							<div class="panel-footer">Rp. <?php echo $harga ?>,-/tahun
 								<div class="navbar-right" style="margin-right:1px">
-									<a href="Detail_Rumah.php" value="<?php $idRumah ?>"> view details <span class="glyphicon glyphicon-chevron-right"></span></a>
+									<a href="Detail_Rumah.php?id=<?php echo $view['id_rumah'] ?>"> view details <span class="glyphicon glyphicon-chevron-right"></span></a>
 									</div>
 							</div>
 						</div>

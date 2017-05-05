@@ -72,59 +72,42 @@
 			</div>
 		</div>
 	</nav>
-
-	<div class="container">    
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">BLACK FRIDAY DEAL</div>
-					<div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-					<div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">BLACK FRIDAY DEAL</div>
-					<div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-					<div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-				</div>
-			</div>
-			<div class="col-sm-4"> 
-				<div class="panel panel-danger">
-					<div class="panel-heading">BLACK FRIDAY DEAL</div>
-					<div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-					<div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-				</div>
-			</div>
-		</div>
-	</div><br>
-
-	
-	<div class="container">    
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">BLACK FRIDAY DEAL</div>
-					<div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-					<div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-				</div>
-			</div>
-			<div class="col-sm-4"> 
-				<div class="panel panel-primary">
-					<div class="panel-heading">BLACK FRIDAY DEAL</div>
-					<div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-					<div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-				</div>
-			</div>
-			<div class="col-sm-4"> 
-				<div class="panel panel-primary">
-					<div class="panel-heading">BLACK FRIDAY DEAL</div>
-					<div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-					<div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-				</div>
-			</div>
-		</div><br><br>
-	</div>
+	<?php
+		$sql = mysqli_query($conn, "SELECT * FROM rumah_kontrakan, perumahan where rumah_kontrakan.id_perum = perumahan.id_perum AND rumah_kontrakan.id_perum = 5");
+		$cek = mysqli_num_rows($sql);
+		if($sql){ ?>
+			<div class="container">
+				<div class="row"> <?php
+			if($cek){
+				while($view = mysqli_fetch_array($sql)){
+					$idRumah = $view['id_rumah'];
+					$namaPerum = $view['nama_perum'];
+					$harga = $view['alamat'];
+					$harga = $view['harga'];
+					$kmr_tidur = $view['kmr_tidur'];
+					$kmr_mandi = $view['kmr_mandi'];
+					$air = $view['air'];
+					$fasilitas = $view['fasilitas'];
+					$gambar = $view['gambar'];
+					
+					?>
+					<div class="col-sm-4">
+						<div class="panel panel-primary">
+							<div class="panel-heading"><?php echo $namaPerum ?></div>
+							<div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+							<div class="panel-footer">Rp. <?php echo $harga ?>,-/tahun
+								<div class="navbar-right" style="margin-right:1px">
+									<a href="Detail_Rumah.php" value="<?php $idRumah ?>"> view details <span class="glyphicon glyphicon-chevron-right"></span></a>
+									</div>
+							</div>
+						</div>
+					</div> <?php
+				} ?>
+					</div><br><br>
+				</div> <?php
+			}
+		}
+	?>
 	<footer class="container-fluid text-center">
 		<p>3Hats Team Copyright</p>
 		<p>Term And Privacy</p>

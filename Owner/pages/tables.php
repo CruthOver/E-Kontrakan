@@ -1,3 +1,5 @@
+<?php session_start(); include ("session.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -140,14 +142,8 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
+                            <h4><span class="glyphicon glyphicon-user">
+							<?php echo $_SESSION['owner'] ?></span></h4>
                             <!-- /input-group -->
                         </li>
                         <li>
@@ -176,54 +172,72 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>						
-                            <tr>
-                                <th>ID</th>
-                                <th>Alamat</th>
-                                <th>Harga</th>
-								<th>Kamar Tidur</th>
-								<th>Kamar Mandi</th>
-								<th>Air</th>
-                                <th>Fasilitas</th>
-                                <th>Aksi</th>
-                            </tr>
-						</thead>
-						<tbody>
-                            <tr class="center">
-                                <td>1</td>                                
-                                <td>Permata Buah Batu 2 Blok C27 No.40</td>
-                                <td>Rp.50.000.000,-/tahun</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>JetPam</td>
-                                <td>Ac, TV 32in, 4 Kasur, 4 Lemari, Dispenser, Kulkas</td>
-                                <td>
-									<input type="submit" class="btn btn-success" name="edit" value="Edit"><br>
-									<input style="margin-top:5px" type="submit" class="btn btn-danger" name="hapus" value="Hapus">
-								</td>
-                            </tr>
-							<tr>
-                                <td>2</td>
-                                <td>Permata Buah Batu Blok D No.72</td>
-                                <td>Rp.28.000.000,-/tahun</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>JetPam</td>
-                                <td>-</td>
-                                <td>
-									<input type="submit" class="btn btn-success" name="forgot" value="Edit"><br>
-									<input style="margin-top:5px" type="submit" class="btn btn-danger" name="forgot" value="Hapus">
-								</td>
-                            </tr>
-						</tbody>
-					</table>
-                    <!-- /.table-responsive -->
-                </div>
-                <!-- /.col-lg-12 -->
+			<?php
+					$user = $_SESSION['owner'];
+					$sql = mysqli_query($conn, "SELECT * FROM rumah_kontrakan,perumahan where rumah_kontrakan.id_perum = perumahan.id_perum and rumah_kontrakan.username = '$user'");
+					$cek = mysqli_num_rows($sql);
+					$i = 0;
+					if($sql){ ?>
+						<!-- /.row -->
+						<div class="row">
+							<div class="col-lg-12">
+							<a href="index.php">
+								<button type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-plus"></span> Tambah
+								</button>
+							</a><br><br>
+								<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+									<thead>		
+										<tr>
+											<th>No.</th>
+											<th>Perumahan</th>
+											<th>Alamat</th>
+											<th>Harga</th>
+											<th>Kamar Tidur</th>
+											<th>Kamar Mandi</th>
+											<th>Air</th>
+											<th>Fasilitas</th>
+											<th>Aksi</th>
+										</tr>
+									</thead> 
+									<tbody><?php
+						if($cek){
+							while($view = mysqli_fetch_array($sql)){
+								$i++;
+								$nama_perum = $view['nama_perum'];
+								$alamat = $view['alamat_rumah'];
+								$harga = $view['harga'];
+								$kmr_tidur = $view['kmr_tidur'];
+								$kmr_mandi = $view['kmr_mandi'];
+								$air = $view['air'];
+								$fasilitas = $view['fasilitas'];
+								?>
+								
+								<tr class="center">
+									<td><?php echo $i ?></td>                                
+									<td><?php echo $nama_perum ?></td>
+									<td><?php echo $alamat ?></td>
+									<td><?php echo $harga ?></td>
+									<td><?php echo $kmr_tidur ?></td>
+									<td><?php echo $kmr_mandi ?></td>
+									<td><?php echo $air ?></td>
+									<td><?php echo $fasilitas ?></td>
+									<td>
+										<input type="submit" class="btn btn-success" name="edit" value="Edit"><br>
+										<button style="margin-top:5px" type="submit" class="example2 btn btn-danger" name="hapus">Hapus</button>
+									</td>
+								</tr> 
+								<?php
+							} ?>
+									</tbody>	
+								</table> 
+							</div>
+							<!-- /.table-responsive -->
+						</div>
+						<!-- /.col-lg-12 --><?php
+						}
+					}
+					?>
             </div>
         </div>
         <!-- /#page-wrapper -->
@@ -237,8 +251,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
 
     <!-- DataTables JavaScript -->
     <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
@@ -251,6 +264,12 @@
 	
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+	
+
+    <!-- Add the minified version of files from the /dist/ folder. -->
+    <!-- jquery-confirm files -->
+    <link rel="stylesheet" type="text/css" href="../css/jquery-confirm.css"/>
+    <script type="text/javascript" src="../js/jquery-confirm.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
@@ -260,6 +279,33 @@
         });
     });
     </script>
+	
+	<script type="text/javascript">
+		$('.example2').on('click', function () {
+			$.confirm({
+				title: 'Delete',
+				content: 'Are You Sure Want Delete ?',
+				animation: 'scaleX',
+				closeAnimation: 'scaleX',
+				theme: 'bootstrap',
+				buttons: {
+					confirm: {
+						text: 'Delete',
+						btnClass: 'btn-danger',
+						keys: ['enter', 'shift'],
+						action: function () {
+							$.alert('Data Has Been Deleted!');
+						}
+					},
+					Cancel: {
+						text: 'Cancel',
+						btnClass: 'btn-default',
+						keys: ['enter', 'shift']
+					}
+				}
+			});
+		});
+	</script>
 
 	
 	<script type="text/javascript">

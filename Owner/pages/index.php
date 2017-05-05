@@ -1,5 +1,4 @@
 <?php session_start(); include ("session.php"); ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,101 +144,11 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">Tambah Data Kontrakan</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            
             <!-- /.row -->
             <div class="row">
 				<form class="form-horizontal" method="POST">
@@ -256,6 +165,7 @@
 								echo "<option value=".$data['id_perum'].">". $data['nama_perum'] ."</option>";
 							}?>
 							</select>
+							
 						</div>
 					</div>
 					<div class="form-group">
@@ -295,9 +205,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="fasilitas"><b>Gambar </b></label>
+						<label class="control-label col-sm-2" for="imageUpload"><b>Gambar </b></label>
 						<div class="col-sm-10">
-							<input type="file" name="imageUpload" id="imageUpload" placeholder="Fasilitas">
+							<input type="file" name="imageUpload" id="imageUpload">format file *.jpeg , *.png , *.jpg
 						</div>
 					</div>
 					<div class="form-group">        
@@ -363,7 +273,7 @@
 
 <?php
 	if(isset($_POST['tambah'])){
-		$user = 'Crashed16';
+
 		$nama_perum = $_POST['Data'];
 		$alamat = $_POST['alamat'];
 		$harga = $_POST['harga'];
@@ -372,7 +282,9 @@
 		$air = $_POST['air'];
 		$fasilitas = $_POST['fasilitas'];
 		$gambar = $_POST['imageUpload'];
-		$sql = mysqli_query($conn, "INSERT INTO rumah_kontrakan VALUES('','$alamat','$harga','$kmr_tidur','$kmr_mandi','$fasilitas','$gambar','$nama_perum','$user')");
+
+		$sql = mysqli_query($conn, "INSERT INTO rumah_kontrakan VALUES('$nama_perum','$alamat','$harga','$kmr_tidur','$kmr_mandi','$fasilitas','$gambar','$user')");
+
 		if($sql){
 			?><script type="text/javascript">alert("Successfully !!!, Data Have Been Saved")</script><?php
 		} else{
